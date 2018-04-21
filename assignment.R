@@ -59,10 +59,6 @@ yDataSet$activity <- as.factor(yDataSet$activity)
 levels(yDataSet$activity) <- activityNames$V2
 
 ### Normalize names
-# remove ()
-#  change - in _
-# replace t by time_
-# replace f by fft_
 
 names(dataSet) <- gsub("\\(","",names(dataSet))
 names(dataSet) <- gsub("\\)","",names(dataSet))
@@ -96,3 +92,5 @@ fullDataSetSplit <- ((split(fullDataSet[-c(1,length(names(fullDataSet)))], f = l
 
 interDataSet <- sapply(fullDataSetSplit, function (x) {x})
 tidyDataSet <- apply(interDataSet, c(1,2), function (x) {mean(x[[1]])})
+
+# tidyDataSet2 <- sapply(fullDataSetSplit, function (x) {apply(x, c(1,2), function (y) { mean(y[[1]])})})
